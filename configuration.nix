@@ -3,14 +3,20 @@
 with lib;
 with builtins;
 
+let
+  home-manager = builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz;
+
+in
 {
 
   imports = [
     ./hardware-configuration.nix
+
+    "${home-manager}/nixos"
   ];
 
   config = {
-    
+
     system.stateVersion = "19.09";
 
     sound.enable = true;
@@ -66,6 +72,15 @@ with builtins;
       vim
       wget
     ];
+
+    home-manager.users.abby = {
+      nixpkgs.config.allowUnfree = true;
+
+      programs = {
+        firefox.enable = true;
+      };
+    };
+
   };
 
 }
