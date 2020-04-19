@@ -13,6 +13,9 @@ with builtins;
     
     system.stateVersion = "19.09";
 
+    sound.enable = true;
+    hardware.pulseaudio.enable = true;
+
     boot = {
       loader = {
         systemd-boot.enable = true;
@@ -26,6 +29,7 @@ with builtins;
     users.users.abby = {
       isNormalUser = true;
       extraGroups = [
+        "audio"
         "networkmanager"
         "sudo"
         "wheel"
