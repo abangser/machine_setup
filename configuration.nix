@@ -48,10 +48,8 @@ in
     };
 
     time.timeZone = "Europe/London";
-    
+
     i18n = {
-      #consoleFont = "Lat2-Terminus16";
-      #consoleKeyMap = "uk";
       defaultLocale = "en_GB.UTF-8";
     };
 
@@ -73,14 +71,31 @@ in
       wget
     ];
 
+    nixpkgs.config.packageOverrides = pkgs: {
+      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+      };
+    };
+
     home-manager.users.abby = {
       nixpkgs.config.allowUnfree = true;
 
       programs = {
-        firefox.enable = true;
+        firefox = {
+          enable = true;
+          extensions =
+            with pkgs.nur.repos.rycee.firefox-addons; [
+              decentraleyes
+              header-editor
+              https-everywhere
+              multi-account-containers
+              octotree
+              privacy-badger
+              ublock-origin
+            ];
+        };
       };
     };
 
   };
-
 }
