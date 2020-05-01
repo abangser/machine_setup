@@ -68,6 +68,7 @@ in
     environment.systemPackages = with pkgs; [
       bluejeans-gui
       lsof
+      slack
       vim
       wget
     ];
