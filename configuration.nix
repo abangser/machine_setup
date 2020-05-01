@@ -87,6 +87,7 @@ in
       nixpkgs.config.allowUnfree = true;
 
       programs = {
+        chromium.enable = true;
         firefox = {
           enable = true;
           extensions =
