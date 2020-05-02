@@ -4,7 +4,7 @@ with lib;
 with builtins;
 
 let
-  home-manager = builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz;
+  home-manager = builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-19.09.tar.gz;
 
 in
 {
@@ -20,7 +20,6 @@ in
     system.stateVersion = "19.09";
 
     sound.enable = true;
-    hardware.pulseaudio.enable = true;
 
     boot = {
       loader = {
@@ -40,11 +39,6 @@ in
         "sudo"
         "wheel"
       ]; # Enable ‘sudo’ for the user.
-    };
-
-    console = {
-      font = "Lat2-Terminus16";
-      keyMap = "uk";
     };
 
     time.timeZone = "Europe/London";
@@ -77,6 +71,7 @@ in
 
     environment.systemPackages = with pkgs; [
       bluejeans-gui
+      git
       lsof
       slack
       vim
