@@ -65,14 +65,6 @@ in
       networkmanager.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      bluejeans-gui
-      lsof
-      slack
-      vim
-      wget
-    ];
-
     nixpkgs.config = {
       allowUnfree = true;
 
@@ -82,6 +74,14 @@ in
         };
       };
     };
+
+    environment.systemPackages = with pkgs; [
+      bluejeans-gui
+      lsof
+      slack
+      vim
+      wget
+    ];
 
     home-manager.users.abby = {
       nixpkgs.config.allowUnfree = true;
